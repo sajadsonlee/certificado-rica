@@ -1,4 +1,4 @@
-const CODIGO_CERTIFICADO = "RICA-2026-AV-0002";
+const CODIGO_CERTIFICADO = "RICA-2026-AV-0001";
 
 function buscarCertificado(codigo) {
   return CERTIFICADOS_RICA.find(certificado => certificado.codigo === codigo);
