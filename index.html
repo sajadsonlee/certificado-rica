@@ -3,406 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Certificado de Avaliador — RICA</title>
-  <style>
-    @page {
-      size: A4 landscape;
-      margin: 0;
-    }
 
-    :root {
-      --azul-rica: #173b6c;
-      --azul-claro: #eaf2fb;
-      --dourado: #b38b2e;
-      --cinza-texto: #333333;
-      --cinza-suave: #f6f8fb;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Times New Roman", Georgia, serif;
-      color: var(--cinza-texto);
-      background: #ffffff;
-    }
-
-    .page {
-      width: 297mm;
-      height: 210mm;
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, #ffffff 0%, #ffffff 56%, var(--azul-claro) 100%);
-      padding: 17mm 22mm 14mm 22mm;
-    }
-
-    .border-outer {
-      position: absolute;
-      inset: 9mm;
-      border: 2.3mm solid var(--azul-rica);
-      pointer-events: none;
-    }
-
-    .border-inner {
-      position: absolute;
-      inset: 13mm;
-      border: 0.45mm solid var(--dourado);
-      pointer-events: none;
-    }
-
-    .watermark {
-      position: absolute;
-      right: 20mm;
-      bottom: 8mm;
-      font-size: 74mm;
-      line-height: 1;
-      font-weight: 700;
-      color: rgba(23, 59, 108, 0.055);
-      letter-spacing: -4mm;
-      user-select: none;
-    }
-
-    .header {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 18mm;
-      margin-bottom: 10mm;
-    }
-
-    .brand-block {
-      display: flex;
-      align-items: center;
-      gap: 8mm;
-    }
-
-    .logo-box {
-      width: 32mm;
-      height: 32mm;
-      border: 0.5mm solid var(--azul-rica);
-      border-radius: 4mm;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      background: #ffffff;
-    }
-
-    .logo-box img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
-
-    .logo-fallback {
-      font-family: Arial, sans-serif;
-      font-size: 9mm;
-      font-weight: 800;
-      color: var(--azul-rica);
-      letter-spacing: 0.8mm;
-    }
-
-    .journal-title {
-      font-family: Arial, sans-serif;
-      color: var(--azul-rica);
-      text-transform: uppercase;
-      letter-spacing: 0.35mm;
-      font-size: 4.2mm;
-      font-weight: 700;
-      margin: 0 0 1.4mm 0;
-    }
-
-    .journal-subtitle {
-      font-family: Arial, sans-serif;
-      font-size: 3.05mm;
-      color: #444;
-      margin: 0;
-      max-width: 96mm;
-      line-height: 1.35;
-    }
-
-    .institution {
-      text-align: right;
-      font-family: Arial, sans-serif;
-      color: var(--azul-rica);
-      font-size: 3.25mm;
-      line-height: 1.45;
-    }
-
-    .certificate-title {
-      position: relative;
-      z-index: 1;
-      margin: 3mm 0 7mm 0;
-      text-align: center;
-      font-family: Arial, sans-serif;
-      font-size: 14mm;
-      line-height: 1;
-      color: var(--azul-rica);
-      text-transform: uppercase;
-      letter-spacing: 1.2mm;
-      font-weight: 800;
-    }
-
-    .certificate-title::after {
-      content: "";
-      display: block;
-      width: 92mm;
-      height: 0.8mm;
-      margin: 5mm auto 0 auto;
-      background: var(--dourado);
-      border-radius: 999px;
-    }
-
-    .content {
-      position: relative;
-      z-index: 1;
-      width: 88%;
-      margin: 0 auto;
-      text-align: center;
-      font-size: 6.2mm;
-      line-height: 1.55;
-    }
-
-    .content p {
-      margin: 0 0 6mm 0;
-    }
-
-    .reviewer-name {
-      display: inline-block;
-      min-width: 170mm;
-      padding: 0 5mm 1.4mm 5mm;
-      margin: 1mm 0;
-      border-bottom: 0.45mm solid var(--dourado);
-      font-size: 9.5mm;
-      font-weight: 700;
-      color: #111111;
-      line-height: 1.2;
-    }
-
-    .article-title {
-      font-style: italic;
-      color: #222222;
-    }
-
-    .details {
-      position: relative;
-      z-index: 1;
-      margin: 5mm auto 0 auto;
-      width: 84%;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 4mm;
-      font-family: Arial, sans-serif;
-      font-size: 3.2mm;
-      text-align: center;
-    }
-
-    .detail-card {
-      border: 0.3mm solid rgba(23, 59, 108, 0.28);
-      background: rgba(255, 255, 255, 0.78);
-      border-radius: 3mm;
-      padding: 3mm;
-      min-height: 14mm;
-    }
-
-    .detail-card strong {
-      display: block;
-      color: var(--azul-rica);
-      font-size: 2.8mm;
-      text-transform: uppercase;
-      letter-spacing: 0.2mm;
-      margin-bottom: 1mm;
-    }
-
-    .signature-row {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      justify-content: center;
-      gap: 36mm;
-      margin-top: 14mm;
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-
-    .signature {
-      width: 78mm;
-    }
-
-    .signature-line {
-      border-top: 0.42mm solid #333333;
-      padding-top: 2mm;
-      font-size: 3.25mm;
-      line-height: 1.35;
-    }
-
-    .signature-line strong {
-      display: block;
-      color: var(--azul-rica);
-      font-size: 3.45mm;
-    }
-
-    .footer {
-      position: absolute;
-      left: 22mm;
-      right: 22mm;
-      bottom: 15mm;
-      z-index: 1;
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 8mm;
-      font-family: Arial, sans-serif;
-      font-size: 2.75mm;
-      color: #555555;
-      line-height: 1.35;
-    }
-
-    .footer .validation {
-      text-align: right;
-      min-width: 78mm;
-    }
-
-    .qr-placeholder {
-      width: 22mm;
-      height: 22mm;
-      border: 0.35mm solid var(--azul-rica);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.2mm;
-      color: var(--azul-rica);
-      background: #fff;
-      margin-left: 4mm;
-      vertical-align: middle;
-      text-align: center;
-      padding: 1mm;
-    }
-
-    .no-print-note {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      right: 10px;
-      padding: 12px 14px;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-      background: #fff6d8;
-      border: 1px solid #e7c35a;
-      border-radius: 8px;
-      color: #4a3b12;
-      z-index: 20;
-    }
-
-    @media print {
-      .no-print-note {
-        display: none;
-      }
-
-      body {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <div class="no-print-note">
-    Antes de converter para PDF, substitua os campos entre colchetes. Para usar o logotipo oficial, troque o conteúdo de <code>src="logo-rica.png"</code> pelo arquivo/URL correto do logotipo da RICA.
-  </div>
+  <main class="certificado">
+    <div class="borda-externa"></div>
+    <div class="borda-interna"></div>
+    <div class="marca-dagua">RICA</div>
 
-  <main class="page">
-    <div class="border-outer"></div>
-    <div class="border-inner"></div>
-    <div class="watermark">RICA</div>
-
-    <header class="header">
-      <div class="brand-block">
-        <div class="logo-box">
-          <!-- Substitua logo-rica.png pelo arquivo oficial do logotipo, se disponível localmente. -->
-          <img src="logo-rica.jpg" alt="Logotipo da RICA" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-          <span class="logo-fallback" style="display:none;">RICA</span>
-        </div>
-        <div>
-          <p class="journal-title">RICA — Revista Interdisciplinar de Computação Aplicada</p>
-          <p class="journal-subtitle">Ciência e Engenharia da Computação aplicadas e ações interdisciplinares em Engenharia, Saúde, Ciências Exatas ou Ciências Humanas.</p>
-        </div>
-      </div>
-
-      <div class="institution">
-        Universidade Federal do Vale do São Francisco — UNIVASF<br />
-        Periódicos UNIVASF<br />
-        Certificação de colaboração acadêmica
+    <header class="cabecalho">
+      <div class="logo">
+        <img
+          src="logo-rica.png"
+          alt="Logotipo da RICA"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+        />
+        <span class="logo-texto" style="display:none;">RICA</span>
       </div>
     </header>
 
-    <h1 class="certificate-title">Certificado</h1>
+    <h1>Certificado</h1>
 
-    <section class="content">
+    <section class="conteudo">
       <p>
         Certificamos que<br />
-        <span class="reviewer-name">[NOME COMPLETO DO(A) AVALIADOR(A)]</span><br />
-        atuou como <strong>avaliador(a) ad hoc</strong> da <strong>RICA — Revista Interdisciplinar de Computação Aplicada</strong>, contribuindo com a análise técnico-científica de manuscrito submetido ao periódico.
+        <span class="nome-avaliador" id="nome-avaliador">
+          [NOME COMPLETO DO(A) AVALIADOR(A)]
+        </span><br />
+        atuou como <strong>avaliador(a) ad hoc</strong> da
+        <strong>RICA — Revista Interdisciplinar de Computação Aplicada</strong>.
       </p>
 
       <p>
-        A colaboração compreendeu a emissão de parecer no processo de avaliação por pares, contribuindo para a qualidade editorial e científica da revista.
-      </p>
-
-      <p>
-        Referente ao manuscrito: <span class="article-title">“[TÍTULO DO ARTIGO OU CÓDIGO DA SUBMISSÃO]”</span>.
+        A colaboração consistiu na emissão de parecer técnico-científico
+        em processo de avaliação por pares, realizado no período de
+        <strong id="periodo-avaliacao">[DATA INICIAL] a [DATA FINAL]</strong>.
       </p>
     </section>
 
-    <section class="details">
-      <div class="detail-card">
-        <strong>Período da avaliação</strong>
-        [MÊS/ANO] ou [DATA INICIAL] a [DATA FINAL]
-      </div>
-      <div class="detail-card">
-        <strong>Volume / Edição</strong>
-        [Volume], [Número], [Ano]
-      </div>
-      <div class="detail-card">
-        <strong>Carga horária sugerida</strong>
-        [X] horas de atividade técnico-científica
-      </div>
-    </section>
-
-    <section class="signature-row">
-      <div class="signature">
-        <div class="signature-line">
-          <strong>[NOME DO(A) EDITOR(A)]</strong>
-          Editor(a)-chefe / Editor(a) responsável<br />
-          RICA — Revista Interdisciplinar de Computação Aplicada
-        </div>
-      </div>
-
-      <div class="signature">
-        <div class="signature-line">
-          <strong>[NOME DA COORDENAÇÃO/INSTITUIÇÃO]</strong>
-          Coordenação editorial / UNIVASF<br />
-          [Cargo ou unidade]
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
+    <section class="assinatura">
       <div>
-        Emitido em [CIDADE], [DIA] de [MÊS] de [ANO].<br />
-        RICA — Revista Interdisciplinar de Computação Aplicada · Periódicos UNIVASF<br />
-        https://www.periodicos.univasf.edu.br/rica/index
+        <strong id="editor-chefe">[NOME DO(A) EDITOR(A)-CHEFE]</strong>
+        Editor(a)-chefe<br />
+        RICA — Revista Interdisciplinar de Computação Aplicada
       </div>
-      <div class="validation">
-        Código de validação: <strong>[CÓDIGO ÚNICO]</strong>
-        <span class="qr-placeholder">QR Code<br />opcional</span>
+    </section>
+
+    <footer class="rodape">
+      <div class="rodape-texto">
+        <span id="emissao">Emitido em Petrolina, 10 de maio de 2026.</span><br />
+        RICA — Revista Interdisciplinar de Computação Aplicada<br />
+        https://www.periodicos.univasf.edu.br/rica/index<br />
+        Código de validação: <strong id="codigo-certificado">[CÓDIGO]</strong>
+      </div>
+
+      <div class="rodape-qrcode">
+        <div id="qrcode"></div>
+        <span>Verificar autenticidade</span>
       </div>
     </footer>
   </main>
+
+  <script src="certificados.js"></script>
+
+  <!-- Biblioteca para gerar QR Code -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <script src="certificado.js"></script>
 </body>
 </html>

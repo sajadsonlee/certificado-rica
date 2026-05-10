@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Validação de Certificado — RICA</title>
+
+  <link rel="stylesheet" href="validar.css" />
+</head>
+
+<body>
+  <main class="pagina-validacao">
+    <section class="card">
+      <div class="logo-validacao">
+        <img src="logo-rica.png" alt="Logotipo da RICA" />
+      </div>
+
+      <h1>Validação de Certificado</h1>
+
+      <div id="resultado"></div>
+    </section>
+  </main>
+
+  <script src="certificados.js"></script>
+
+  <script>
+    function obterCodigoDaUrl() {
+      const parametros = new URLSearchParams(window.location.search);
+      return parametros.get("codigo");
+    }
+
+    function buscarCertificado(codigo) {
+      return CERTIFICADOS_RICA.find(certificado => certificado.codigo === codigo);
+    }
+
+    function renderizarResultado() {
+      const codigo = obterCodigoDaUrl();
+      const resultado = document.getElementById("resultado");
+
+      if (!codigo) {
+        resultado.innerHTML = `
+          <div class="erro">
+            <h2>Código não informado</h2>
+            <p>Não foi possível validar o certificado porque nenhum código foi informado.</p>
+          </div>
+        `;
+        return;
+      }
+
+      const certificado = buscarCertificado(codigo);
+
+      if (!certificado) {
+        resultado.innerHTML = `
+          <div class="erro">
+            <h2>Certificado não encontrado</h2>
+            <p>O código <strong>${codigo}</strong> não consta na base pública de certificados emitidos pela RICA.</p>
+          </div>
+        `;
+        return;
+      }
+
+      resultado.innerHTML = `
+        <div class="sucesso">
+          <h2>Certificado válido</h2>
+
+          <table>
+            <tr>
+              <th>Código</th>
+              <td>${certificado.codigo}</td>
+            </tr>
+            <tr>
+              <th>Avaliador(a)</th>
+              <td>${certificado.nome}</td>
+            </tr>
+            <tr>
+              <th>Atividade</th>
+              <td>${certificado.tipo}</td>
+            </tr>
+            <tr>
+              <th>Revista</th>
+              <td>${certificado.revista}</td>
+            </tr>
+            <tr>
+              <th>Período</th>
+              <td>${certificado.periodo}</td>
+            </tr>
+            <tr>
+              <th>Emissão</th>
+              <td>${certificado.emissao}</td>
+            </tr>
+            <tr>
+              <th>Editor responsável</th>
+              <td>${certificado.editor}</td>
+            </tr>
+            <tr>
+              <th>Status</th>
+              <td><strong>${certificado.status}</strong></td>
+            </tr>
+          </table>
+        </div>
+      `;
+    }
+
+    document.addEventListener("DOMContentLoaded", renderizarResultado);
+  </script>
+</body>
+</html>

@@ -1,30 +1,20 @@
+# Certificados RICA
 
-# Template de Certificado — RICA
+Sistema simples em HTML, CSS e JavaScript para emissão de certificados de avaliador(a) ad hoc da **RICA — Revista Interdisciplinar de Computação Aplicada**, com geração de QR Code e página pública de validação.
 
-Template em HTML e CSS para geração de certificado de avaliador(a) ad hoc da RICA — Revista Interdisciplinar de Computação Aplicada.
+O projeto foi pensado para funcionar diretamente no **GitHub Pages**, sem necessidade de servidor, banco de dados ou instalação de dependências.
 
-## Arquivos
+---
 
-- `index.html`: template principal do certificado.
-- `logo-rica.png`: logotipo da revista, usado no cabeçalho.
+## Estrutura do projeto
 
-## Como usar
-
-1. Abra o arquivo `index.html` no navegador.
-2. Substitua os campos entre colchetes, como `[NOME COMPLETO DO(A) AVALIADOR(A)]`.
-3. Use a opção de impressão do navegador.
-4. Salve como PDF em formato A4 paisagem.
-
-## Conversão para PDF
-
-No navegador:
-
-- Pressione `Ctrl + P` ou `Cmd + P`;
-- Escolha `Salvar como PDF`;
-- Selecione orientação `Paisagem`;
-- Ative a impressão de gráficos de fundo.
-
-## Instituição
-
-RICA — Revista Interdisciplinar de Computação Aplicada  
-Universidade Federal do Vale do São Francisco — UNIVASF
+```text
+certificado-rica/
+├── index.html
+├── style.css
+├── certificado.js
+├── certificados.js
+├── validar.html
+├── validar.css
+├── logo-rica.png
+└── README.md

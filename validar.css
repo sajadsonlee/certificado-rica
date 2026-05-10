@@ -1,0 +1,96 @@
+:root {
+  --azul-rica: #173b6c;
+  --dourado: #b38b2e;
+  --cinza-fundo: #f4f6f8;
+  --cinza-texto: #222222;
+  --verde: #167a3a;
+  --vermelho: #a32020;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: var(--cinza-texto);
+  background: var(--cinza-fundo);
+}
+
+.pagina-validacao {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+.card {
+  width: 100%;
+  max-width: 760px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border-top: 8px solid var(--azul-rica);
+}
+
+.logo-validacao {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.logo-validacao img {
+  max-width: 110px;
+  max-height: 110px;
+}
+
+h1 {
+  margin: 0 0 24px 0;
+  color: var(--azul-rica);
+  text-align: center;
+  font-size: 28px;
+}
+
+h2 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.sucesso h2 {
+  color: var(--verde);
+}
+
+.erro h2 {
+  color: var(--vermelho);
+}
+
+.erro {
+  text-align: center;
+  font-size: 17px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 18px;
+}
+
+th,
+td {
+  border-bottom: 1px solid #dddddd;
+  padding: 12px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  width: 180px;
+  color: var(--azul-rica);
+  font-weight: bold;
+}
+
+td {
+  color: #222222;
+}
